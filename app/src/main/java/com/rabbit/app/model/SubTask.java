@@ -6,5 +6,5 @@ public class SubTask{
     private String start_time;
     private String end_time;
     private String category;
-    private Task task
+    private Task task;
 }

@@ -1,24 +1,23 @@
 package com.rabbit.app.model;
 
-import com.rabbit.app.service.Authenticable;
-
+import com.rabbit.app.model.Task;
+import jakarta.persistence.*;
 import java.util.List;
-import javax.persistence.*;
 
 @Entity
-public class User extends Authenticable {
+public class User {
     private String name;
     private String email;
     private String password;
 
     @Id
-    @GeneratedValue(stategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Task> tasks;
 
-    public int getId(){
+    public Long getId(){
         return id;
     }
 
@@ -43,7 +42,7 @@ public class User extends Authenticable {
         this.password = password;
     }
 
-    public List<Task> getTask(){
+    public List<Task> getTasks(){
         return tasks;
     }
     public void setTasks(List<Task> tasks) {

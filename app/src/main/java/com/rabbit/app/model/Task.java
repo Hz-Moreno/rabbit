@@ -1,17 +1,19 @@
 package com.rabbit.app.model;
 
 import javax.annotation.processing.Generated;
-import javax.persistence.*;
+import jakarta.persistence.*;
+import com.rabbit.app.model.User;
 
 @Entity
 public class Task{
     @Id
-    @GeneratedValue(stategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String title;
     private double duration;
     private String start_time;
     private String end_time;
     private String category;
+    private User user;
 
     // Getter and Setter for title
     public String getTitle() {
