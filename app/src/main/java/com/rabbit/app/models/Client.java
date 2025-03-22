@@ -1,8 +1,10 @@
 package com.rabbit.app.models;
 
 import com.rabbit.app.interfaces.User;
-
 import jakarta.persistence.*;
+import com.rabbit.app.services.Password;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "clients")
@@ -13,9 +15,10 @@ public class Client implements User {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    @Column(columnDefinition = "UUID")
+    private UUID id;
 
-    Client() {};
+    public Client() {};
 
     public Client(String email, String password, String name){
         this.name = name;
@@ -24,11 +27,11 @@ public class Client implements User {
     }
 
     @Override
-    public Long getId(){
+    public UUID getId(){
         return id;
     }
     @Override
-    public void setId(Long id){
+    public void setId(UUID id){
         this.id = id;
     }
 
@@ -56,7 +59,7 @@ public class Client implements User {
     }
     @Override
     public void setPassword(String password){
-        this.password = password;
+        this.password = Password.encrypt(password);
     }
 
     @Override

@@ -2,9 +2,7 @@ package com.rabbit.app.controllers;
 
 import com.rabbit.app.repositories.ClientRepository;
 import com.rabbit.app.models.Client;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,15 @@ public class ClientController {
     @GetMapping("/")
     public List<Client> get(){
         return clientRepository.findAll();
+    }
+
+    @PostMapping("/create")
+    public Client create(@RequestBody Client data){
+        Client client = new Client();
+        client.setName(data.getName());
+        client.setEmail(data.getEmail());
+        client.setPassword(data.getPassword());
+
+        return clientRepository.save(client);
     }
 }

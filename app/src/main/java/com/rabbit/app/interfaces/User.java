@@ -1,12 +1,14 @@
 package com.rabbit.app.interfaces;
 
+import java.util.UUID;
+
 public interface User {
-    Long getId();
+    UUID getId();
     String getName();
     String getPassword();
     String getEmail();
 
-    void setId(Long id);
+    void setId(UUID id);
     void setName(String name);
     void setPassword(String password);
     void setEmail(String email);
