@@ -59,21 +59,7 @@ public class Client implements User {
     }
     @Override
     public void setPassword(String password){
-        this.password = Password.encrypt(password);
+       this.password = password;
     }
 
-    @Override
-    public void register(){
-        // logic register
-    }
-
-    @Override
-    public void login(String email, String password){
-        // logic login
-    }
-
-    @Override
-    public void logout(){
-        //
-    }
 }

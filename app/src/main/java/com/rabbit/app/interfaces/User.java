@@ -13,7 +13,4 @@ public interface User {
     void setPassword(String password);
     void setEmail(String email);
 
-    void login(String email, String password);
-    void register();
-    void logout();
 }

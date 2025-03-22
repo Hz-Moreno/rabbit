@@ -20,14 +20,4 @@ public class ClientController {
     public List<Client> get(){
         return clientRepository.findAll();
     }
-
-    @PostMapping("/create")
-    public Client create(@RequestBody Client data){
-        Client client = new Client();
-        client.setName(data.getName());
-        client.setEmail(data.getEmail());
-        client.setPassword(data.getPassword());
-
-        return clientRepository.save(client);
-    }
 }
