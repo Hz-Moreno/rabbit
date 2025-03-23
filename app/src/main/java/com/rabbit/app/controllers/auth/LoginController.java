@@ -6,6 +6,7 @@ import com.rabbit.app.models.Client;
 import com.rabbit.app.repositories.ClientRepository;
 import com.rabbit.app.services.JWT;
 import com.rabbit.app.services.Password;
+import com.rabbit.app.services.Session;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +31,8 @@ public class LoginController {
         try {
             Client client = clientRepository.findByEmail(loginRequest.getEmail());
             if (client != null && Password.match(loginRequest.getPassword(), client.getPassword())) {
-                String token = JWT.create("CLIENT", client.getId());
-                response.put("access_token", token);
+                Session session =  new Session(client, "client");
+                response.put("access_token", session.getToken());
             } else {
                 response.put("error", "Invalid email or password");
             }
